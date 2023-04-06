@@ -1,3 +1,4 @@
+import 'package:ecommerce/models/shoes.dart';
 import 'package:ecommerce/theme.dart';
 import 'package:ecommerce/widgets/product_card.dart';
 import 'package:ecommerce/widgets/product_file.dart';
@@ -8,7 +9,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     Widget categories() {
       return Container(
         margin: EdgeInsets.only(
@@ -168,11 +168,12 @@ class HomePage extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(width: 30),
-              Row(children: [
-                ProductCard(),
-                ProductCard(),
-                ProductCard(),
-              ],),
+              ListView.builder(
+                itemCount: shoesList.length,
+                itemBuilder: (context, index) {
+                  return ProductCard(index: index);
+                }
+              )
             ],
           ),
         ),
